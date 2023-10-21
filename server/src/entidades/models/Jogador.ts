@@ -1,5 +1,6 @@
-import { sequelize } from "../../src/database";
+import { sequelize } from "../../database";
 import { DataTypes } from "sequelize";
+import { Time } from "./Time";
 
 export const Jogador = sequelize.define('Jogador', {
     id: {
@@ -15,7 +16,7 @@ export const Jogador = sequelize.define('Jogador', {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    timeId: {
+    id_time: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
@@ -43,6 +44,9 @@ export const Jogador = sequelize.define('Jogador', {
     timestamps: false,
 }
 );
+
+Jogador.belongsTo(Time, {foreignKey: 'id_time', targetKey: 'id'});
+Time.hasMany(Jogador, {foreignKey: 'id_time', sourceKey: 'id'});
 
 Jogador.sync({alter: true, force: false})
     .then(() => {

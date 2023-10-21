@@ -30,6 +30,7 @@ export interface ConfrontoProps {
     id_time_mandante: number;
     id_time_visitante: number;
     data: Date;
+    placar: string;
 }
 
 export interface TimeUsuarioRodadaProps {
