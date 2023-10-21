@@ -6,6 +6,7 @@ Usuario
         Email
         Senha
         Saldo
+        Nome do Time
 
     Métodos
         Cadastro
@@ -16,7 +17,6 @@ Usuario
 TimeUsuarioRodada
     Atributos
         Usuario
-        Nome
         Rodada
         Jogadores
         Preco

@@ -28,6 +28,10 @@ export const Usuario = sequelize.define('Usuario', {
         allowNull: false,
         defaultValue: 0,
     },
+    nome_time: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
 },
 {
     timestamps: false,

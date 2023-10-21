@@ -30,3 +30,11 @@ export interface ConfrontoProps {
     id_time_visitante: number;
     data: Date;
 }
+
+export interface TimeUsuarioRodadaProps {
+    id?: number;
+    id_usuario: number;
+    rodada: number;
+    preco: number;
+    pontos: number;
+}
