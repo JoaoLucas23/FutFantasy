@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "tsnd index.ts"
+    "dev": "tsnd ./src/index.ts"
   },
   "repository": {
     "type": "git",

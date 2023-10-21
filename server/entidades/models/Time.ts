@@ -1,4 +1,4 @@
-import { sequelize } from "../../database";
+import { sequelize } from "../../src/database";
 import { DataTypes } from "sequelize";
 
 export const Time = sequelize.define('Time', {
