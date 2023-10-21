@@ -6,4 +6,10 @@ export interface UsarioProps {
     saldo?: number;
 }
 
-    
+export interface TimeProps {
+    id?: number;
+    nome: string;
+    escudo: string;
+}
+
+
