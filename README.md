@@ -54,7 +54,22 @@ Confronto
         Time Fora
         Data
         Rodada
+        Placar
 
     Métodos
         Listar Confrontos
         Listar Confrontos por Rodada
+
+Rodada
+    Atributos
+        Numero
+        Data Inicio Mercado
+        Hora Inicio Mercado
+        Data Fim Mercado
+        Hora Fim Mercado
+
+Jogador Rodada
+    Atributos
+        Jogador
+        Rodada
+        Pontuação

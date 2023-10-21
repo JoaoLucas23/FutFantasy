@@ -25,11 +25,6 @@ export const Jogador = sequelize.define('Jogador', {
         allowNull: false,
         values: ['Goleiro', 'Zagueiro', 'Lateral', 'Meio-campo', 'Atacante'],
     },
-    status: {
-        type: DataTypes.ENUM,
-        allowNull: false,
-        values: ['Provável', 'Duvidoso', 'Contundido', 'Suspenso', 'Nulo'],
-    },
     media: {
         type: DataTypes.FLOAT,
         allowNull: false,

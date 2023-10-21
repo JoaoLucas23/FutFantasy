@@ -26,6 +26,10 @@ export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
         allowNull: false,
         defaultValue: 0,
     },
+    jogadores: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: false,
+    },
 },
 {
     timestamps: true,

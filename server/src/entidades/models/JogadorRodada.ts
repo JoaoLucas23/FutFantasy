@@ -19,7 +19,13 @@ const JogadorRodada = sequelize.define('JogadorRodada', {
     },
     pontos: {
         type: DataTypes.FLOAT,
+        allowNull: true,
+    },
+    status: {
+        type: DataTypes.ENUM,
         allowNull: false,
+        values: ['Provável', 'Duvidoso', 'Contundido', 'Suspenso', 'Nulo'],
+        defaultValue: 'Nulo',
     },
 },
 {
