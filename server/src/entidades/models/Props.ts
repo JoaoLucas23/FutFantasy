@@ -1,9 +1,10 @@
-export interface UsarioProps {
+export interface UsuarioProps {
     id?: number;
     nome: string;
     email: string;
     senha?: string;
     saldo?: number;
+    nome_time?: string;
 }
 
 export interface TimeProps {

@@ -18,4 +18,7 @@ app.use(express.urlencoded({
     extended: true,
   }));
 
+import rotasUsuario from './entidades/controllers/RotasUsuario';
+app.use('/api/usuario',rotasUsuario);
+
 export {app};
