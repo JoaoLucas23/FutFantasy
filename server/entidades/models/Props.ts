@@ -12,4 +12,13 @@ export interface TimeProps {
     escudo: string;
 }
 
-
+export interface JogadorProps {
+    id?: number;
+    nome: string;
+    foto?: string;
+    timeId: number;
+    posicao: string;
+    status: string;
+    media: number;
+    preco: number;
+}
