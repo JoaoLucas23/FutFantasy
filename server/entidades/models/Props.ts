@@ -22,3 +22,11 @@ export interface JogadorProps {
     media: number;
     preco: number;
 }
+
+export interface ConfrontoProps {
+    id?: number;
+    rodada: number;
+    id_time_mandante: number;
+    id_time_visitante: number;
+    data: Date;
+}

@@ -52,9 +52,7 @@ Confronto
     Atributos
         Time Casa
         Time Fora
-        DataHora
-        Placar Casa
-        Placar Fora
+        Data
         Rodada
 
     Métodos
