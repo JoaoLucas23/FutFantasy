@@ -23,6 +23,7 @@ router.post(('/criarUsuario'),
             const usuario = await ServicosUsuario.criaUsuario(req.body);
             res.status(201).json(usuario);
         } catch (error) {
+            console.log(error);
             next(error);
         }
     }

@@ -11,8 +11,6 @@ class UsuarioService {
             saldo: 100,
             nome_time: body.nome_time
         };
-        usuario.senha = usuario.senha || "";
-        usuario.senha = await bcrypt.hash(usuario.senha, 10);
         const novoUsuario = await Usuario.create(usuario);
         return novoUsuario;
     }
