@@ -5,6 +5,7 @@ class ServicosTime {
     async criaTime(body: TimeProps) {
         const time = {
             nome: body.nome,
+            abreviacao: body.abreviacao,
             escudo: body.escudo,
         };
         const novoTime = await Time.create(time);

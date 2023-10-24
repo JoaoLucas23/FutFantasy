@@ -15,13 +15,17 @@ export const Time = sequelize.define('Time', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    abreviacao: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 },
 {
     timestamps: false,
 }
 );
 
-Time.sync({alter: true, force: false})
+Time.sync({alter: true, force: true})
     .then(() => {
         console.log("Tabela de Times criada")
     })

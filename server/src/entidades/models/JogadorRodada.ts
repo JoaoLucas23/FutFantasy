@@ -27,6 +27,10 @@ const JogadorRodada = sequelize.define('JogadorRodada', {
         values: ['Provável', 'Duvidoso', 'Contundido', 'Suspenso', 'Nulo'],
         defaultValue: 'Nulo',
     },
+    preco: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
 },
 {
     timestamps: false,

@@ -11,6 +11,7 @@ export interface TimeProps {
     id?: number;
     nome: string;
     escudo: string;
+    abreviacao: string;
 }
 
 export interface JogadorProps {
@@ -21,6 +22,14 @@ export interface JogadorProps {
     posicao: string;
     status: string;
     media: number;
+}
+
+export interface JogadorRodadaProps {
+    id?: number;
+    id_jogador: number;
+    id_rodada: number;
+    pontos: number;
+    status: string;
     preco: number;
 }
 

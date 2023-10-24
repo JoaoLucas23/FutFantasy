@@ -23,16 +23,12 @@ export const Jogador = sequelize.define('Jogador', {
     posicao: {
         type: DataTypes.ENUM,
         allowNull: false,
-        values: ['Goleiro', 'Zagueiro', 'Lateral', 'Meio-campo', 'Atacante'],
+        values: ['Goleiro', 'Zagueiro', 'Lateral', 'Meia', 'Atacante', 'Técnico'],
     },
     media: {
         type: DataTypes.FLOAT,
         allowNull: false,
         defaultValue: 0,
-    },
-    preco: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
     },
 },
 {
