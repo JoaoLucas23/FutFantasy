@@ -5,7 +5,6 @@ export interface UsuarioProps {
     senha?: string;
     saldo?: number;
     nome_time?: string;
-    cod_jogador: number;
 }
 
 export interface TimeProps {
@@ -23,7 +22,8 @@ export interface JogadorProps {
     timeId: number;
     posicao: string;
     status: string;
-    media: number;
+    media?: number;
+    cod_jogador: number;
 }
 
 export interface JogadorRodadaProps {

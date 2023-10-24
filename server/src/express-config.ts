@@ -22,5 +22,7 @@ import rotasUsuario from './entidades/controllers/RotasUsuario';
 app.use('/api/usuario',rotasUsuario);
 import rotasTime from './entidades/controllers/RotasTimes';
 app.use('/api/time',rotasTime);
+import rotasJogador from './entidades/controllers/RotasJogador';
+app.use('/api/jogador',rotasJogador);
 
 export {app};
