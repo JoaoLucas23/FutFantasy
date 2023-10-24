@@ -12,6 +12,18 @@ class ServicosTime {
         const novoTime = await Time.create(time);
         return novoTime;
     }
+
+    async buscaTimePorId(id: number) {
+        const time = await Time.findByPk(id);
+        if (time) return time;
+        else throw new Error("Time não encontrado");
+    }
+
+    async buscaTimePorCod(cod: number) {
+        const time = await Time.findOne({ where: { cod_time: cod } });
+        if (time) return time;
+        else throw new Error("Time não encontrado");
+    }
 }
 
 export default new ServicosTime();

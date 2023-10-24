@@ -30,7 +30,12 @@ const JogadorRodada = sequelize.define('JogadorRodada', {
     preco: {
         type: DataTypes.FLOAT,
         allowNull: false,
+        defaultValue: 0,
     },
+    jogou: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+    }
 },
 {
     timestamps: false,

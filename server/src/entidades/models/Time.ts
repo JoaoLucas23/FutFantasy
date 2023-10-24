@@ -30,7 +30,7 @@ export const Time = sequelize.define('Time', {
 }
 );
 
-Time.sync({alter: true, force: true})
+Time.sync({alter: true, force: false})
     .then(() => {
         console.log("Tabela de Times criada")
     })
