@@ -18,6 +18,11 @@ export const Time = sequelize.define('Time', {
     abreviacao: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    cod_time: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true
     }
 },
 {

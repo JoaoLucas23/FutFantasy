@@ -7,6 +7,7 @@ class ServicosTime {
             nome: body.nome,
             abreviacao: body.abreviacao,
             escudo: body.escudo,
+            cod_time: body.cod_time
         };
         const novoTime = await Time.create(time);
         return novoTime;

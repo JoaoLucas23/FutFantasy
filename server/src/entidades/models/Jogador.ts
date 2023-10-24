@@ -30,6 +30,11 @@ export const Jogador = sequelize.define('Jogador', {
         allowNull: false,
         defaultValue: 0,
     },
+    cod_jogador: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true
+    }
 },
 {
     timestamps: false,
