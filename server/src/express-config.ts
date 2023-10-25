@@ -26,5 +26,7 @@ import rotasJogador from './entidades/controllers/RotasJogador';
 app.use('/api/jogador',rotasJogador);
 import rotasRodada from './entidades/controllers/RotasRodada';
 app.use('/api/rodada',rotasRodada);
+import rotasJogadorRodada from './entidades/controllers/RotasJogadorRodada';
+app.use('/api/jogadorrodada',rotasJogadorRodada);
 
 export {app};
