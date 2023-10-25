@@ -11,22 +11,16 @@ export const Rodada = sequelize.define('Rodada', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    data_inicio_mercado: {
-        type: DataTypes.DATEONLY,
+    data_inicio: {
+        type: DataTypes.DATE,
         allowNull: false,
     },
-    hora_inicio_mercado: {
-        type: DataTypes.TIME,
+
+    data_fim: {
+        type: DataTypes.DATE,
         allowNull: false,
-    },
-    data_fim_mercado: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-    },
-    hora_fim_mercado: {
-        type: DataTypes.TIME,
-        allowNull: false,
-    },
+    }
+
 },
 {
     timestamps: false,

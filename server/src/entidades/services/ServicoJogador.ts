@@ -14,6 +14,7 @@ class ServicoJogador {
             foto: body.foto,
             id_time: id_time,
             posicao: body.posicao,
+            preco: body.preco,
             cod_jogador: body.cod_jogador,
         };
 

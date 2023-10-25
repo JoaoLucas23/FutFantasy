@@ -24,6 +24,7 @@ export interface JogadorProps {
     status: string;
     media?: number;
     cod_jogador: number;
+    preco?: number;
 }
 
 export interface JogadorRodadaProps {
@@ -32,7 +33,6 @@ export interface JogadorRodadaProps {
     id_rodada: number;
     pontos: number;
     status: string;
-    preco: number;
 }
 
 export interface ConfrontoProps {
@@ -50,4 +50,11 @@ export interface TimeUsuarioRodadaProps {
     rodada: number;
     preco: number;
     pontos: number;
+}
+
+export interface RodadaProps {
+    id?: number;
+    numero: number;
+    data_inicio: Date;
+    data_fim: Date;
 }

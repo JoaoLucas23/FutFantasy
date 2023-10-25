@@ -34,7 +34,12 @@ export const Jogador = sequelize.define('Jogador', {
         type: DataTypes.INTEGER,
         allowNull: false,
         unique: true
-    }
+    },
+    preco: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+        defaultValue: 0,
+    },
 },
 {
     timestamps: false,
