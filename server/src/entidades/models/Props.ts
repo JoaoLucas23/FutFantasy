@@ -32,7 +32,6 @@ export interface JogadorRodadaProps {
     id_jogador: number;
     id_rodada: number;
     pontos: number;
-    status: string;
 }
 
 export interface ConfrontoProps {

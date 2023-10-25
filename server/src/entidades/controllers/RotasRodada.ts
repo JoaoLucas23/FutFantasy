@@ -3,7 +3,7 @@ import { Router } from "express";
 
 const router = Router();
 
-router.post("/criaRodada", 
+router.post("/criarRodada", 
 async (req, res, next) => {
     try {
         const rodada = await ServicoRodada.criaRodada(req.body);

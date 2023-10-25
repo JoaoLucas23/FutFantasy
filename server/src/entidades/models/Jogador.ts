@@ -40,6 +40,12 @@ export const Jogador = sequelize.define('Jogador', {
         allowNull: false,
         defaultValue: 0,
     },
+    status: {
+        type: DataTypes.ENUM,
+        allowNull: false,
+        values: ['Provável', 'Duvidoso', 'Contundido', 'Suspenso', 'Nulo'],
+        defaultValue: 'Nulo',
+    },
 },
 {
     timestamps: false,
@@ -49,7 +55,7 @@ export const Jogador = sequelize.define('Jogador', {
 Jogador.belongsTo(Time, {foreignKey: 'id_time', targetKey: 'id'});
 Time.hasMany(Jogador, {foreignKey: 'id_time', sourceKey: 'id'});
 
-Jogador.sync({alter: true, force: false})
+Jogador.sync({alter: true, force: true})
     .then(() => {
         console.log("Tabela de Jogadores criada")
     })

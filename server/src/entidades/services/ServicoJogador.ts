@@ -16,6 +16,7 @@ class ServicoJogador {
             posicao: body.posicao,
             preco: body.preco,
             cod_jogador: body.cod_jogador,
+            status: body.status,
         };
 
         const novoJogador = await Jogador.create(jogador);

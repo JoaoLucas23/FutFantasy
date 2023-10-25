@@ -27,7 +27,7 @@ export const Rodada = sequelize.define('Rodada', {
 }
 );
 
-Rodada.sync({alter: true, force: false})
+Rodada.sync({alter: false, force: false})
     .then(() => {
         console.log("Tabela de Rodadas criada")
     })
