@@ -22,6 +22,12 @@ class ServicoJogador {
         const novoJogador = await Jogador.create(jogador);
         return novoJogador;
     }
+
+    async buscaJogadorPorCod(cod_jogador: number){
+        const jogador = await Jogador.findOne({where: {cod_jogador: cod_jogador}});
+        if(jogador) return jogador;
+        else throw new Error("Jogador não encontrado");
+    }
 }
 
 export default new ServicoJogador();

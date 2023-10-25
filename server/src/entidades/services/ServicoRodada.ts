@@ -12,6 +12,12 @@ class ServicoRodada {
         const novaRodada = await Rodada.create(rodada);
         return novaRodada;
     }
+    
+    async buscaRodadaPorNumero(numero: number){
+        const rodada = await Rodada.findOne({where: {numero: numero}});
+        if(rodada) return rodada;
+        else throw new Error("Rodada não encontrada");
+    }
 }
 
 export default new ServicoRodada();

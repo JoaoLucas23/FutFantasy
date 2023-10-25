@@ -3,7 +3,7 @@ import { DataTypes } from "sequelize";
 import { Jogador } from "./Jogador";
 import { Rodada } from "./Rodada";
 
-const JogadorRodada = sequelize.define('JogadorRodada', {
+export const JogadorRodada = sequelize.define('JogadorRodada', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

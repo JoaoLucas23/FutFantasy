@@ -29,9 +29,10 @@ export interface JogadorProps {
 
 export interface JogadorRodadaProps {
     id?: number;
-    id_jogador: number;
-    id_rodada: number;
+    cod_jogador: number;
+    rodada: number;
     pontos: number;
+    jogou: boolean;
 }
 
 export interface ConfrontoProps {
