@@ -1,6 +1,7 @@
 import { sequelize } from '../../database';
 import { DataTypes } from 'sequelize';
 import { Usuario } from './Usuario';
+import { Jogador } from './Jogador';
 
 export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
     id: {
@@ -27,7 +28,7 @@ export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
         defaultValue: 0,
     },
     jogadores: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.ARRAY(DataTypes.JSON),
         allowNull: false,
     },
 },

@@ -51,6 +51,7 @@ export interface TimeUsuarioRodadaProps {
     rodada: number;
     preco: number;
     pontos: number;
+    jogadores: JogadorProps[];
 }
 
 export interface RodadaProps {

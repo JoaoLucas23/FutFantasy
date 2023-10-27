@@ -28,5 +28,7 @@ import rotasRodada from './entidades/controllers/RotasRodada';
 app.use('/api/rodada',rotasRodada);
 import rotasJogadorRodada from './entidades/controllers/RotasJogadorRodada';
 app.use('/api/jogadorrodada',rotasJogadorRodada);
+import rotasTimeUsuarioRodada from './entidades/controllers/RotasTimeUsuarioRodada';
+app.use('/api/timeusuariorodada',rotasTimeUsuarioRodada);
 
 export {app};

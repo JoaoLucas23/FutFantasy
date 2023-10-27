@@ -33,6 +33,12 @@ class ServicoJogador {
         else throw new Error("Jogador não encontrado");
     }
 
+    async buscaJogadorPorId(id: number){
+        const jogador = await Jogador.findByPk(id);
+        if(jogador) return jogador;
+        else throw new Error("Jogador não encontrado");
+    }
+
     async listaJogadorDinamico(body: JogadorProps){
 
         let filtroDinamico: any = {};
