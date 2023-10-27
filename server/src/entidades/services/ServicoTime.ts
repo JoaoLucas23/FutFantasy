@@ -24,6 +24,17 @@ class ServicosTime {
         if (time) return time;
         else throw new Error("Time não encontrado");
     }
+
+    async buscaTimePorNome(nome: string) {
+        const time = await Time.findOne({ where: { nome: nome } });
+        if (time) return time;
+        else throw new Error("Time não encontrado");
+    }
+
+    async listaTimes() {
+        const times = await Time.findAll();
+        return times;
+    }
 }
 
 export default new ServicosTime();

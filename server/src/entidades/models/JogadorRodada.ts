@@ -36,7 +36,7 @@ Jogador.hasMany(JogadorRodada, {foreignKey: 'id_jogador', sourceKey: 'id'});
 JogadorRodada.belongsTo(Rodada, {foreignKey: 'id_rodada', targetKey: 'id'});
 Rodada.hasMany(JogadorRodada, {foreignKey: 'id_rodada', sourceKey: 'id'});
 
-JogadorRodada.sync({alter: true, force: false})
+JogadorRodada.sync({alter: false, force: false})
     .then(() => {
         console.log("Tabela de JogadoresRodadas criada")
     })

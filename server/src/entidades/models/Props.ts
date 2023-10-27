@@ -19,7 +19,8 @@ export interface JogadorProps {
     id?: number;
     nome: string;
     foto?: string;
-    cod_time: number;
+    cod_time?: number;
+    nome_time?: string;
     posicao: string;
     status: string;
     media?: number;

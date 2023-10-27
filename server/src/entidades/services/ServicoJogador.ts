@@ -1,11 +1,15 @@
+import { mapWhereFieldNames } from "sequelize/types/utils";
 import { Jogador } from "../models/Jogador";
 import { JogadorProps } from "../models/Props";
 import ServicoTime from "./ServicoTime";
+import { Time } from "../models/Time";
+import { JogadorRodada } from "../models/JogadorRodada";
+import { Op } from "sequelize";
 
 class ServicoJogador {
     async criaJogador(body: JogadorProps){
 
-        const time = await ServicoTime.buscaTimePorCod(body.cod_time);
+        const time = await ServicoTime.buscaTimePorCod(body.cod_time!);
 
         const id_time = time.getDataValue("id");
 
@@ -27,6 +31,38 @@ class ServicoJogador {
         const jogador = await Jogador.findOne({where: {cod_jogador: cod_jogador}});
         if(jogador) return jogador;
         else throw new Error("Jogador não encontrado");
+    }
+
+    async listaJogadorDinamico(body: JogadorProps){
+
+        let filtroDinamico: any = {};
+        if(body.nome) filtroDinamico.nome = body.nome;
+        if(body.posicao) filtroDinamico.posicao = body.posicao;
+        if(body.status) filtroDinamico.status = body.status;
+
+        if(body.nome_time) {
+            const time = await ServicoTime.buscaTimePorNome(body.nome_time);
+            filtroDinamico.id_time = time.getDataValue("id");
+        }
+        if(body.cod_time) {
+            const time = await ServicoTime.buscaTimePorCod(body.cod_time);
+            filtroDinamico.id_time = time.getDataValue("id");
+        }
+        // if(body.preco) {
+        //     filtroDinamico.preco = {[Op.gte]: body.preco};
+        // }
+
+        const jogadores = await Jogador.findAll(
+        {
+            where: filtroDinamico,
+            include: [ 
+                {
+                    model: Time,
+                    attributes: ["nome", "escudo", "abreviacao"],
+                }
+            ]
+        });
+        return jogadores;
     }
 }
 

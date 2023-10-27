@@ -14,4 +14,15 @@ router.post("/criarJogador",
     }
 );
 
+router.get("/buscaJogadorDinamico/",
+    async (req, res, next) => {
+        try {
+            const jogadores = await ServicoJogador.listaJogadorDinamico(req.body);
+            res.status(200).json(jogadores);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
 export default router;

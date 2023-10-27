@@ -43,8 +43,7 @@ export const Jogador = sequelize.define('Jogador', {
     status: {
         type: DataTypes.ENUM,
         allowNull: false,
-        values: ['Provável', 'Duvidoso', 'Contundido', 'Suspenso', 'Nulo'],
-        defaultValue: 'Nulo',
+        values: ['Provável', 'Duvidoso', 'Contudido', 'Suspenso', 'Nulo']
     },
 },
 {
