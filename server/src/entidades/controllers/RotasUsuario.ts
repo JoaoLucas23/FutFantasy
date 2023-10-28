@@ -1,9 +1,12 @@
-import { Request, Router } from "express";
+import { NextFunction, Request, Router } from "express";
 import ServicosUsuario from "../services/ServicosUsuario";
+import {loginMiddleware,jwtMiddleware} from "../../middlewares/login";
 
 const router = Router();
 
-router.post("/login");
+router.post("/login",
+    loginMiddleware,
+);
 
 router.post('/logout',
     async (req, res, next) => {
@@ -94,6 +97,20 @@ router.get(('/retornaUsuarioPorNome/:nome'),
             const nome = req.params.nome;
             const usuario = await ServicosUsuario.retornaUsuarioPorNome(nome);
             res.status(200).json(usuario);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
+router.get('/me', 
+    jwtMiddleware, 
+    async (req: Request, res, next: NextFunction) => {
+        try {
+            const id = req.user!.id;
+            console.log(id);
+            //const user = await ServicosUsuario.retornaUsuarioPorId(id);
+            res.status(200).json(id);
         } catch (error) {
             next(error);
         }

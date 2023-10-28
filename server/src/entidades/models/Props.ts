@@ -1,8 +1,8 @@
 export interface UsuarioProps {
-    id?: number;
+    id: number;
     nome: string;
     email: string;
-    senha?: string;
+    senha: string;
     saldo?: number;
     nome_time?: string;
 }
