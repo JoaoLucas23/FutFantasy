@@ -18,18 +18,19 @@ export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
         allowNull: false,
     },
     preco: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0,
     },
     pontos: {
-        type: DataTypes.FLOAT,
+        type: DataTypes.REAL,
         allowNull: false,
         defaultValue: 0,
     },
     jogadores: {
-        type: DataTypes.ARRAY(DataTypes.JSON),
+        type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: '',
     },
 },
 {
@@ -40,7 +41,7 @@ export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
 TimeUsuarioRodada.belongsTo(Usuario, {foreignKey: 'id_usuario', targetKey: 'id'});
 Usuario.hasMany(TimeUsuarioRodada, {foreignKey: 'id_usuario', sourceKey: 'id'});
 
-TimeUsuarioRodada.sync({alter: true, force: false})
+TimeUsuarioRodada.sync({alter: false, force: false})
     .then(() => {
         console.log("Tabela de TimeUsuarioRodada criada")
     })
