@@ -1,16 +1,17 @@
-import express from 'express';
-import cors from 'cors';
+import express, { Express } from 'express';
+import cors, { CorsOptions } from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
  
 dotenv.config();
 
-const app = express();
+export const app: Express = express();
 
-app.use(cors({
+const options: CorsOptions = {
   origin: 'http://localhost:3023',
   credentials: true
-}));
+};
+app.use(cors(options));
 
 app.use(cookieParser());
 app.use(express.json());
@@ -30,5 +31,3 @@ import rotasJogadorRodada from './entidades/controllers/RotasJogadorRodada';
 app.use('/api/jogadorrodada',rotasJogadorRodada);
 import rotasTimeUsuarioRodada from './entidades/controllers/RotasTimeUsuarioRodada';
 app.use('/api/timeusuariorodada',rotasTimeUsuarioRodada);
-
-export {app};

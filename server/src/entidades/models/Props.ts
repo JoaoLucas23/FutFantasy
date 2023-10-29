@@ -1,5 +1,7 @@
-export interface UsuarioProps {
-    id: number;
+import { CreationOptional, InferAttributes, InferCreationAttributes, Model } from "sequelize";
+
+export interface UsuarioProps extends Model<InferAttributes<UsuarioProps>, InferCreationAttributes<UsuarioProps>> {
+    id: CreationOptional<string>;
     nome: string;
     email: string;
     senha: string;

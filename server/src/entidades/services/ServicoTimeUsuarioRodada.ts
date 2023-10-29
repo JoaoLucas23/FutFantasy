@@ -75,7 +75,7 @@ class ServicoTimeUsuarioRodada {
 
         jogadores +=  jogador.getDataValue("id") + ",";
 
-        if (preco_time + preco_jogador > saldo) throw new Error("Saldo insuficiente");
+        if (preco_time + preco_jogador > saldo!) throw new Error("Saldo insuficiente");
         const novotime = await timeUsuarioRodada.update({ jogadores:  jogadores, preco: preco_time + preco_jogador });
         return novotime;
     }

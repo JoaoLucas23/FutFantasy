@@ -1,23 +1,29 @@
-import * as jwt from 'jsonwebtoken';
+import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import { Usuario } from '../entidades/models/Usuario';
-import { NextFunction, Request, Response } from 'express';
 import { UsuarioProps } from '../entidades/models/Props';
+import { Request, Response, NextFunction } from 'express';
 
-const SECRET = process.env.SECRET_KEY || '';
+function getEnv(name: string): string {
+  const value = process.env[name];
+  
+  if (!value) {
+    throw new Error(`Faltando: process.env['${name}'].`);
+  }
+  
+  return value;
+}
 
-function signJWT(user: UsuarioProps, res: Response) {
- const body = {
+function generateJWT(user: UsuarioProps, res: Response) {
+  const body = {
     id: user.id,
     nome: user.nome,
     email: user.email,
-    senha: user.senha,
   };
-  const token = jwt.sign({user: body} , SECRET,
-    { expiresIn: process.env.JWT_EXPIRATION });
-
+  
+  const token = sign({ user: body },getEnv('SECRET_KEY'), { expiresIn: process.env.JWT_EXPIRATION});
   res.cookie('jwt', token, {
-    httpOnly: false,
-    secure: false,
+    httpOnly: true,
+    secure: getEnv('NODE_ENV') !== 'development',
   });
 }
 
@@ -33,55 +39,47 @@ function cookieExtractor(req: Request) {
 
 export async function loginMiddleware(req: Request, res: Response, next: NextFunction) {
   try {
-    const User = await Usuario.findOne({where: {email: req.body.email}});
-    if (!User) {
-      throw new Error('E-mail incorreto!');
-    } else {
-      const matchingPassword = req.body.senha == User.getDataValue("senha");
-      if (!matchingPassword) {
-        throw new Error('Senha incorreta!');
-      }
+    const user = await Usuario.findOne({where: {email: req.body.email}});
+    if (!user) {
+      throw new Error('E-mail e/ou senha incorretos!');
     }
 
-    const user = {
-      id: User.getDataValue("id"),
-      nome: User.getDataValue("nome"),
-      email: User.getDataValue("email"),
-      senha: User.getDataValue("senha"),
+    console.log(user.getDataValue("senha"));
+
+    const matchingPassword = req.body.senha == user.getDataValue("senha");
+    if (!matchingPassword) {
+      throw new Error('E-mail e/ou senha incorretos!');
     }
 
-    signJWT(user, res);
-    res.json([{user: user}, {token: cookieExtractor(req)}]);
+    generateJWT(user, res);
+
+    res.status(204).end();
   } catch (error) {
     next(error);
   }
 }
 
-export const notLoggedIn = (req: Request, res: Response, next: NextFunction) => {
+export function notLoggedIn(req: Request, res: Response, next: NextFunction) {
   try {
     const token = cookieExtractor(req);
+
     if (token) {
-      jwt.verify(
-        token,
-        SECRET,
-        (err: any) => {
-          if (!(err instanceof jwt.TokenExpiredError)) {
-            throw new Error('Você já está logado no sistema!');
-          }
-        },
-      );
+      const decoded = verify(token,getEnv('SECRET_KEY'));
+      if (decoded) {
+        throw new Error('Você já está logado no sistema!');
+      }
     }
     next();
   } catch (error) {
     next(error);
   }
-};
+}
 
-export function jwtMiddleware(req: Request, res: Response, next: NextFunction) {
+export function verifyJWT(req: Request, res: Response, next: NextFunction) {
   try {
     const token = cookieExtractor(req);
     if (token) {
-      const decoded = jwt.verify(token, SECRET) as { user: UsuarioProps };
+      const decoded = verify(token,getEnv('SECRET_KEY')) as JwtPayload;
       req.user = decoded.user;
     }
 
@@ -89,6 +87,7 @@ export function jwtMiddleware(req: Request, res: Response, next: NextFunction) {
       throw new Error(
         'Você precisa estar logado para realizar essa ação!');
     }
+
     next();
   } catch (error) {
     next(error);

@@ -15,11 +15,5 @@ declare global {
         interface Request {
             user?: UsuarioProps
         }
-        interface User {
-            id: number;
-            email: string;
-            nome: string;
-            email: string;
-        }
     }
 }

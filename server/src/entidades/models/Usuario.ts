@@ -1,7 +1,8 @@
 import { sequelize } from "../../database";
 import { DataTypes } from "sequelize";
+import { UsuarioProps } from "./Props";
 
-export const Usuario = sequelize.define('Usuario', {
+export const Usuario = sequelize.define<UsuarioProps>('Usuario', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

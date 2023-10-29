@@ -1,6 +1,6 @@
 import { NextFunction, Request, Router } from "express";
 import ServicosUsuario from "../services/ServicosUsuario";
-import {loginMiddleware,jwtMiddleware} from "../../middlewares/login";
+import {loginMiddleware,verifyJWT} from "../../middlewares/login";
 
 const router = Router();
 
@@ -104,13 +104,10 @@ router.get(('/retornaUsuarioPorNome/:nome'),
 );
 
 router.get('/me', 
-    jwtMiddleware, 
+    verifyJWT, 
     async (req: Request, res, next: NextFunction) => {
         try {
-            const id = req.user!.id;
-            console.log(id);
-            //const user = await ServicosUsuario.retornaUsuarioPorId(id);
-            res.status(200).json(id);
+            res.status(200).json(req.user);
         } catch (error) {
             next(error);
         }
