@@ -32,6 +32,11 @@ export const TimeUsuarioRodada = sequelize.define('TimeUsuarioRodada', {
         allowNull: false,
         defaultValue: '',
     },
+    qtd_jogadores: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+    },
 },
 {
     timestamps: true,

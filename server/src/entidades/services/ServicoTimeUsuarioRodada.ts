@@ -11,7 +11,7 @@ class ServicoTimeUsuarioRodada {
             id_rodada: id_rodada,
             preco: 0,
             pontos: 0,
-            
+            jogadores: ''
         };
         const novoTimeUsuarioRodada = await TimeUsuarioRodada.create(timeUsuarioRodada);
         return novoTimeUsuarioRodada;
@@ -24,7 +24,11 @@ class ServicoTimeUsuarioRodada {
     }
 
     async adicionaJogador(id_jogador: number, id_time_usuario_rodada: number) {
+
         const timeUsuarioRodada = await this.buscaTimeUsuarioRodadaPorId(id_time_usuario_rodada);
+        let qtd_jogadores = timeUsuarioRodada.getDataValue("qtd_jogadores");
+        
+        if (qtd_jogadores === 12) throw new Error("Time completo");
         
         let jogadores = timeUsuarioRodada.getDataValue("jogadores");
         const preco_time = timeUsuarioRodada.getDataValue("preco");
@@ -34,51 +38,48 @@ class ServicoTimeUsuarioRodada {
         const jogador = await ServicoJogador.buscaJogadorPorId(id_jogador);
         const preco_jogador = jogador.getDataValue("preco");
 
-        // const j = JSON.stringify({
-        //     'id': jogador.getDataValue("id"),
-        //     'posicao': jogador.getDataValue("posicao"),
-        // });
+        if(qtd_jogadores===11) jogadores +=  jogadores +=  jogador.getDataValue("id");
+        else jogadores += jogador.getDataValue("id") + ",";
 
-        let zag = 0;
-        let mei = 0;
-        let ata = 0;
-
-        // for(let jog of jogadores){
-        //     if(jog.id == j[0]) throw new Error("Jogador já adicionado");
-        //     switch(jog[1]){
-        //         case "Goleiro":
-        //             if(j[1] == "Goleiro") throw new Error("Já existe um goleiro no time");
-        //             break;
-        //         case "Zagueiro":
-        //             if(j[1] == "Zagueiro") {
-        //                 if(zag == 2) throw new Error("Já existem dois zagueiros no time");
-        //                 else zag++;
-        //             }
-        //             break;
-        //         case "Meia":
-        //             if(j[1] == "Meia") {
-        //                 if(mei == 3) throw new Error("Já existem dois meias no time");
-        //                 else mei++;
-        //             }
-        //             break;
-        //         case "Atacante":
-        //             if(j[1] == "Atacante") {
-        //                 if(ata == 3) throw new Error("Já existe um atacante no time");
-        //                 else ata++;
-        //             }
-        //             break;
-        //         case "Tecnico":
-        //             if(j[1] == "Tecnico") throw new Error("Já existe um tecnico no time");
-        //             break;
-        //         }
-        // }
-
-        jogadores +=  jogador.getDataValue("id") + ",";
+        qtd_jogadores += 1;
 
         if (preco_time + preco_jogador > saldo!) throw new Error("Saldo insuficiente");
-        const novotime = await timeUsuarioRodada.update({ jogadores:  jogadores, preco: preco_time + preco_jogador });
+
+        const novotime = await timeUsuarioRodada.update({ jogadores:  jogadores, preco: preco_time + preco_jogador, qtd_jogadores: qtd_jogadores });
         return novotime;
     }
+
+    async removeJogador(id_jogador: number, id_time_usuario_rodada: number) {
+        const timeUsuarioRodada = await this.buscaTimeUsuarioRodadaPorId(id_time_usuario_rodada);
+        let qtd_jogadores = timeUsuarioRodada.getDataValue("qtd_jogadores");
+
+        if (qtd_jogadores === 0) throw new Error("Time vazio");
+        
+        let jogadores = timeUsuarioRodada.getDataValue("jogadores");
+        const preco_time = timeUsuarioRodada.getDataValue("preco");
+
+        const jogador = await ServicoJogador.buscaJogadorPorId(id_jogador);
+        const preco_jogador = jogador.getDataValue("preco");
+
+        jogadores = jogadores.replace(jogador.getDataValue("id") + ",", "");
+        qtd_jogadores -= 1;
+
+        const novotime = await timeUsuarioRodada.update({ jogadores:  jogadores, preco: preco_time - preco_jogador, qtd_jogadores: qtd_jogadores });
+        return novotime;
+    }
+
+    async retornaTimeUsuarioRodada(id_usuario: number, id_rodada: number) {
+        const timeUsuarioRodada = await TimeUsuarioRodada.findOne({ where: { id_usuario: id_usuario, id_rodada: id_rodada } });
+        if (timeUsuarioRodada) return timeUsuarioRodada;
+        else throw new Error("TimeUsuarioRodada não encontrado");
+    }
+
+    async resetaTimeUsuarioRodada(id_usuario: number, id_rodada: number) {
+        const timeUsuarioRodada = await this.retornaTimeUsuarioRodada(id_usuario, id_rodada);
+        const novotime = await timeUsuarioRodada.update({ jogadores: '', preco: 0, qtd_jogadores: 0 });
+        return novotime;
+    }
+
 }
 
 export default new ServicoTimeUsuarioRodada();
