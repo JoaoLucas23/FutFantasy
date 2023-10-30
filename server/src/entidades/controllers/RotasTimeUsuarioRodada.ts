@@ -67,6 +67,15 @@ router.put("/resetarTimeUsuarioRodada", async (req, res) => {
     }
 });
 
-
+router.get("/listaTimeUsuarioRodadaComJogadores", async (req, res) => {
+    try {
+        const id_usuario = req.body.id_usuario;
+        const id_rodada = req.body.id_rodada;
+        const time = await ServicoTimeUsuarioRodada.retornaTimeUsuarioRodadaComJogadores(id_usuario, id_rodada);
+        res.status(200).json(time);
+    } catch (error: any) {
+        res.status(400).end(error.message);
+    }
+});
 
 export default router;

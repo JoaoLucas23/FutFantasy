@@ -70,6 +70,20 @@ class ServicoJogador {
         });
         return jogadores;
     }
+
+    async retornaListaDeJogadores(lista_ids: string) {
+        console.log(lista_ids);
+        const ids = lista_ids.split(',',12);
+        if(ids.length<12) ids.pop();
+        console.log(ids);
+        const jogadores: any = [];
+        for(let i=0; i<ids.length; i++){
+            const jogador = await this.buscaJogadorPorId(parseInt(ids[i]));
+            jogadores.push(jogador);
+        }
+        return jogadores;
+    }
+
 }
 
 export default new ServicoJogador();
