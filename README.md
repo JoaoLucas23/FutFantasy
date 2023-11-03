@@ -21,7 +21,17 @@ que todas as funções sejam feitas dentro do sistema.
 
 Utilizamos essas tecnologias por elas serem bem comuns para a criação de sistemas web que pretendem ser acessadas por vários usuários. Além disso são linguagens de fácil compreensão por parte dos integrantes do grupo.
 
-4 - Especificidades de Sistema:
+4 - Execução do Sistema
+Para que o sistema seja executado da forma correta devemos seguir os seguintes passos:
+A- Baixar o arquivo com as pastas do sistema, ou clonar o repositório a partir do github para dentro da sua IDE
+B- Abrir um terminal e rodar os seguintes códigos dentro da pasta do sistema
+- cd server
+- npm i
+C- Utilizar o comando:
+  - npm run dev dentro da pasta server para rodar o sistema
+D- Utilizar o programa Postman ou similares para rodar as rotas presentes no sistema, utilizando os parâmetros necessários no campo Body.
+
+5 - Especificidades de Sistema:
 Usuario
     Atributos
         Nome
