@@ -20,10 +20,10 @@ function generateJWT(user: UsuarioProps, res: Response) {
     email: user.email,
   };
   
-  const token = sign({ user: body },getEnv('SECRET_KEY'), { expiresIn: process.env.JWT_EXPIRATION});
+  const token = sign({ user: body },'mysecretkey', { expiresIn: process.env.JWT_EXPIRATION});
   res.cookie('jwt', token, {
     httpOnly: true,
-    secure: getEnv('NODE_ENV') !== 'development',
+    secure: 'development' !== 'development',
   });
 }
 
@@ -64,7 +64,7 @@ export function notLoggedIn(req: Request, res: Response, next: NextFunction) {
     const token = cookieExtractor(req);
 
     if (token) {
-      const decoded = verify(token,getEnv('SECRET_KEY'));
+      const decoded = verify(token,'mysecretkey');
       if (decoded) {
         throw new Error('Você já está logado no sistema!');
       }
@@ -79,7 +79,7 @@ export function verifyJWT(req: Request, res: Response, next: NextFunction) {
   try {
     const token = cookieExtractor(req);
     if (token) {
-      const decoded = verify(token,getEnv('SECRET_KEY')) as JwtPayload;
+      const decoded = verify(token,'mysecretkey') as JwtPayload;
       req.user = decoded.user;
     }
 
