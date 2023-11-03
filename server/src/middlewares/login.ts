@@ -20,7 +20,7 @@ function generateJWT(user: UsuarioProps, res: Response) {
     email: user.email,
   };
   
-  const token = sign({ user: body },'mysecretkey', { expiresIn: process.env.JWT_EXPIRATION});
+  const token = sign({ user: body },'mysecretkey', { expiresIn: '30d'});
   res.cookie('jwt', token, {
     httpOnly: true,
     secure: 'development' !== 'development',
