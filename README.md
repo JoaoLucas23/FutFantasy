@@ -23,12 +23,16 @@ Utilizamos essas tecnologias por elas serem bem comuns para a criação de siste
 
 4 - Execução do Sistema
 Para que o sistema seja executado da forma correta devemos seguir os seguintes passos:
+
 A- Baixar o arquivo com as pastas do sistema, ou clonar o repositório a partir do github para dentro da sua IDE
+
 B- Abrir um terminal e rodar os seguintes códigos dentro da pasta do sistema
-- cd server
-- npm i
+- "cd server"
+- "npm i" Para Dowload das depdendências do sistema
+
 C- Utilizar o comando:
   - npm run dev dentro da pasta server para rodar o sistema
+
 D- Utilizar o programa Postman ou similares para rodar as rotas presentes no sistema, utilizando os parâmetros necessários no campo Body.
 
 5 - Especificidades de Sistema:
