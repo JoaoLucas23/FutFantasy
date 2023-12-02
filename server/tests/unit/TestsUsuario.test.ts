@@ -77,4 +77,12 @@ describe('criaUsuario', () => {
   
       expect(usuario).toEqual(mockUsuario);
     }); 
+
+    test('método recebe um id => nao encontra o usuario', async () => {
+      const id = 2;
+  
+      (Usuario.findByPk as any).mockResolvedValue(null);
+      
+      await expect(ServicosUsuario.retornaUsuarioPorId(id)).rejects.toThrow(`Usuario com o id - ${id} - não encontrado`);
+    });
   });
