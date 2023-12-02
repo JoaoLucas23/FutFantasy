@@ -1,5 +1,4 @@
 name: Unit Tests
-
 on: 
   push:
     paths:
@@ -20,11 +19,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install Npm Packages
-        run: npm install
-      - name: Unit Tests
-        run: npm test
+          node-version: '20'
+          cache: 'npm'
+      - run: npm install
+      - run: npm test
