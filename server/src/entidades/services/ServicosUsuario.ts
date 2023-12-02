@@ -1,11 +1,10 @@
 import { Usuario } from "../models/Usuario";
 import { UsuarioProps } from "../models/Props";
-import bcrypt from "bcrypt";
 
 class UsuarioService {
     async criaUsuario(body: UsuarioProps) {
         const usuario = {
-            nome:  body.nome,
+            nome: body.nome,
             email: body.email,
             senha: body.senha,
             saldo: 100,
@@ -17,18 +16,18 @@ class UsuarioService {
 
     async editaUsuario(id: number, body: UsuarioProps) {
         const usuarioAtualizado = await Usuario.update(body, {
-            where: { 
-                id: id 
-            } 
+            where: {
+                id: id
+            }
         });
         return usuarioAtualizado;
     }
 
     async deletaUsuario(id: number) {
         await Usuario.destroy({
-            where: { 
-                id: id 
-            } 
+            where: {
+                id: id
+            }
         });
     }
 
