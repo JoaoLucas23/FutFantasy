@@ -1,20 +1,21 @@
 name: Node.js CI
-on:
-  push:
-    paths:
-      - 'server/**'
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: server
+
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Use Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '14'
+        node-version: '20'
 
     - name: Navigate to server directory
       run: cd server
