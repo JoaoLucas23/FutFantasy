@@ -1,18 +1,26 @@
-name: Test code
+name: Node.js CI
 on:
   push:
-    paths: 'server/**'
+    paths:
+      - 'server/**'
+
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '20'
-        cache: 'npm'
-    - run: npm install
-    - run: npm test
+        node-version: '14'
+
+    - name: Navigate to server directory
+      run: cd server
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test
