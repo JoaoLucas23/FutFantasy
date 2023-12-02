@@ -1,4 +1,5 @@
 name: Test code
+
 on: 
   push:
     paths:
@@ -18,10 +19,17 @@ jobs:
         working-directory: server
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '${{ matrix.node-version }}'
           cache: 'npm'
-      - run: npm install
-      - run: npm test
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
