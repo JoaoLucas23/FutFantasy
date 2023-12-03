@@ -35,6 +35,11 @@ class ServicosTime {
         const times = await Time.findAll();
         return times;
     }
+
+    async deletarTime(id: number) {
+        const time = await this.buscaTimePorId(id);
+        await time.destroy();
+    }
 }
 
 export default new ServicosTime();

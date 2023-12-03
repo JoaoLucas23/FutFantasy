@@ -10,8 +10,6 @@ const usuario = {
     nome_time: "Teste"
 } as UsuarioProps;
 
-const server = app.listen(3023);
-
 let usuarioId = 0;
 
 describe("Testes de integração do Usuario", () => {
@@ -69,9 +67,5 @@ describe("Testes de integração do Usuario", () => {
         .get(`/api/usuario/retornaUsuarioPorId/${usuarioId}`).send();
  
         expect(response.statusCode).toEqual(500);
-    });
-
-    afterAll(async () => {
-        server.close();
     });
 });
