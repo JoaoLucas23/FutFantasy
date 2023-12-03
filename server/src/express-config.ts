@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
  
 dotenv.config();
 
-export const app: Express = express();
+const app: Express = express();
 
 const options: CorsOptions = {
   origin: 'http://localhost:3023',
@@ -31,3 +31,5 @@ import rotasJogadorRodada from './entidades/controllers/RotasJogadorRodada';
 app.use('/api/jogadorrodada',rotasJogadorRodada);
 import rotasTimeUsuarioRodada from './entidades/controllers/RotasTimeUsuarioRodada';
 app.use('/api/timeusuariorodada',rotasTimeUsuarioRodada);
+
+export default app;

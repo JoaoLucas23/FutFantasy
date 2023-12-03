@@ -31,9 +31,9 @@ export const Time = sequelize.define('Time', {
 );
 
 Time.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de Times criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de Times criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de Times: " + error)
 });

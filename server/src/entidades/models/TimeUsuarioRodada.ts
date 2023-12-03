@@ -47,9 +47,9 @@ TimeUsuarioRodada.belongsTo(Usuario, {foreignKey: 'id_usuario', targetKey: 'id'}
 Usuario.hasMany(TimeUsuarioRodada, {foreignKey: 'id_usuario', sourceKey: 'id'});
 
 TimeUsuarioRodada.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de TimeUsuarioRodada criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de TimeUsuarioRodada criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de TimeUsuarioRodada: " + error)
 });

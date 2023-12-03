@@ -28,9 +28,9 @@ export const Rodada = sequelize.define('Rodada', {
 );
 
 Rodada.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de Rodadas criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de Rodadas criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de Rodadas: " + error)
 });

@@ -40,9 +40,9 @@ export const Usuario = sequelize.define<UsuarioProps>('Usuario', {
 );
 
 Usuario.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de Usuários criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de Usuários criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de Usuários: " + error)
 });

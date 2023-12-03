@@ -37,10 +37,10 @@ export const Confronto = sequelize.define('Confronto', {
 Confronto.belongsTo(Rodada, {foreignKey: 'id_rodada', targetKey: 'id'});
 Rodada.hasMany(Confronto, {foreignKey: 'id_rodada', sourceKey: 'id'});
 
-Confronto.sync({alter: true, force: false})
-    .then(() => {
-        console.log("Tabela de Confrontos criada")
-    })
+Confronto.sync({alter: false, force: false})
+    // .then(() => {
+    //     console.log("Tabela de Confrontos criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de Confrontos: " + error)
 });

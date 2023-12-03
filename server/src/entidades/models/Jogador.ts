@@ -55,9 +55,9 @@ Jogador.belongsTo(Time, {foreignKey: 'id_time', targetKey: 'id'});
 Time.hasMany(Jogador, {foreignKey: 'id_time', sourceKey: 'id'});
 
 Jogador.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de Jogadores criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de Jogadores criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de Jogadores: " + error)
 });

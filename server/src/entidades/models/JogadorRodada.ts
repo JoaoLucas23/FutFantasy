@@ -37,9 +37,9 @@ JogadorRodada.belongsTo(Rodada, {foreignKey: 'id_rodada', targetKey: 'id'});
 Rodada.hasMany(JogadorRodada, {foreignKey: 'id_rodada', sourceKey: 'id'});
 
 JogadorRodada.sync({alter: false, force: false})
-    .then(() => {
-        console.log("Tabela de JogadoresRodadas criada")
-    })
+    // .then(() => {
+    //     console.log("Tabela de JogadoresRodadas criada")
+    // })
     .catch((error) => {
         console.log("Erro ao criar tabela de JogadoresRodadas: " + error)
 });
