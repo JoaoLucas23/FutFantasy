@@ -106,6 +106,21 @@ describe('buscaJogadorPorCod', () => {
         (Jogador.findOne as jest.Mock).mockResolvedValue(null);
 
         await expect(ServicoJogador.buscaJogadorPorCod(2)).rejects.toThrow("Jogador não encontrado");
+    });
+});
 
+describe('buscaJogadorPorId', () => {
+  test('método recebe id do jogador => retorna o jogador com os dados corretos', async () => {
+    (Jogador.findByPk as jest.Mock).mockResolvedValue(mockJogador);
+
+    const result = await ServicoJogador.buscaJogadorPorId(mockJogador.id!);
+
+    expect(result).toEqual(mockJogador);
+  });
+
+    test('método recebe id do jogador => nao encontra um jogador com o id', async () => {
+        (Jogador.findByPk as jest.Mock).mockResolvedValue(null);
+
+        await expect(ServicoJogador.buscaJogadorPorId(2)).rejects.toThrow("Jogador não encontrado");
     });
 });
