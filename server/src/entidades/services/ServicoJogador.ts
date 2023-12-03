@@ -84,6 +84,23 @@ class ServicoJogador {
         return jogadores;
     }
 
+    async listarJogadores(){
+        const jogadores = await Jogador.findAll({
+            include: [ 
+                {
+                    model: Time,
+                    attributes: ["nome", "escudo", "abreviacao"],
+                }
+            ]
+        });
+        return jogadores;
+    }
+
+    async deletarJogador(id: number){
+        const jogador = await this.buscaJogadorPorId(id);
+        await jogador.destroy();
+    }
+
 }
 
 export default new ServicoJogador();

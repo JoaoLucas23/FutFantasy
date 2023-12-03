@@ -25,4 +25,27 @@ router.get("/buscaJogadorDinamico/",
     }
 );
 
+router.get("/listarJogadores",
+    async (req, res, next) => {
+        try {
+            const jogador = await ServicoJogador.listarJogadores();
+            res.status(200).json(jogador);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
+router.delete("/deletarJogador/:id",
+    async (req, res, next) => {
+        try {
+            const id = parseInt(req.params.id);
+            const jogador = await ServicoJogador.deletarJogador(id);
+            res.status(200).json(jogador);
+        } catch (error) {
+            next(error);
+        }
+    }
+);
+
 export default router;
