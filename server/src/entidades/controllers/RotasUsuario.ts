@@ -1,6 +1,11 @@
 import { NextFunction, Request, Router } from "express";
 import ServicosUsuario from "../services/ServicosUsuario";
 import {loginMiddleware,verifyJWT} from "../../middlewares/login";
+import { UsuarioProps } from "../models/Props";
+
+export interface RequestWithUser extends Request {
+    user?: UsuarioProps;
+}
 
 const router = Router();
 
@@ -105,7 +110,7 @@ router.get(('/retornaUsuarioPorNome/:nome'),
 
 router.get('/me', 
     verifyJWT, 
-    async (req: Request, res, next: NextFunction) => {
+    async (req: RequestWithUser, res, next: NextFunction) => {
         try {
             res.status(200).json(req.user);
         } catch (error) {

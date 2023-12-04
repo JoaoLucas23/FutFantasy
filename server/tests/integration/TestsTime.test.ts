@@ -17,7 +17,6 @@ describe("Testes de integração do Time", () => {
         .post('/api/time/criarTime').send(time);
 
         timeId = response.body.id;
-        console.log(timeId);
 
         expect(response.statusCode).toEqual(201);
         expect(response.body.nome).toEqual(time.nome);

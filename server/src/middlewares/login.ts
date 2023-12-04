@@ -2,6 +2,7 @@ import { JwtPayload, sign, verify } from 'jsonwebtoken';
 import { Usuario } from '../entidades/models/Usuario';
 import { UsuarioProps } from '../entidades/models/Props';
 import { Request, Response, NextFunction } from 'express';
+import { RequestWithUser } from '../entidades/controllers/RotasUsuario';
 
 function getEnv(name: string): string {
   const value = process.env[name];
@@ -75,7 +76,7 @@ export function notLoggedIn(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export function verifyJWT(req: Request, res: Response, next: NextFunction) {
+export function verifyJWT(req: RequestWithUser, res: Response, next: NextFunction) {
   try {
     const token = cookieExtractor(req);
     if (token) {

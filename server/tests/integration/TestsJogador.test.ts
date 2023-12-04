@@ -20,7 +20,6 @@ describe("Testes de integração do Jogador", () => {
         .post('/api/jogador/criarJogador').send(jogador);
 
         jogaodorId = response.body.id;
-        console.log(jogaodorId);
 
         expect(response.statusCode).toEqual(201);
         expect(response.body.nome).toEqual(jogador.nome);

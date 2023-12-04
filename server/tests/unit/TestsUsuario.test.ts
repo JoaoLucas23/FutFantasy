@@ -10,7 +10,6 @@ jest.mock('../../src/entidades/models/Usuario.ts', () => ({
 }));
 
 const mockUsuario = {
-  id: 1,
   nome: "Usuario Teste",
   email: "teste@teste.com",
   senha: "123456",
